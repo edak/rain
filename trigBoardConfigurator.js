@@ -19,8 +19,6 @@ let LEDblinkStartTime;
 let OTAinProgress=" ";
 let OTAisActive = false;
 let firstConnected = true;
-let udpEnabled = false;
-let tcpEnabled = false;
 //let binFileInput;
 
 function preload() {
@@ -73,14 +71,6 @@ function setup() {
   contactButton.style('color', color(255));
   contactButton.style('background-color', color(62, 129, 182));
   contactButton.mousePressed(contactCommand);
-
-  //espotaButton = createButton('espota');
-  //espotaButton.position(380, 300);
-  //espotaButton.style('color', color(255));
-  //espotaButton.style('background-color', color(62, 129, 182));
-  //espotaButton.mousePressed(espotacommand);
-  ////binFileInput = createFileInput(handleFile);
-  ////binFileInput.position(380, 320);
 
   let yPositionStart = 600;
   ssidTitle = createElement('h3', 'WiFi SSID (2.4GHz)');
@@ -155,14 +145,6 @@ function setup() {
   triggerSelectorButton = createButton('Save');
   triggerSelectorButton.position(triggerSelector.x+triggerSelector.width+100, triggerSelector.y);
   triggerSelectorButton.mousePressed(triggerSelectorCommand);
-  //**************************************
-  highSpeedEnableTitle = createElement('h4', 'High Speed Trigger: ');
-  highSpeedEnableTitle.position(10, trigTriggerSelectionTitle.size().height+trigTriggerSelectionTitle.y+5);
-  highSpeedEnableCheckbox = createCheckbox('', false);
-  highSpeedEnableCheckbox.position(highSpeedEnableTitle.size().width+highSpeedEnableTitle.x+10, highSpeedEnableTitle.size().height+highSpeedEnableTitle.y);
-  highSpeedEnableButton = createButton('Save');
-  highSpeedEnableButton.position(highSpeedEnableTitle.size().width+highSpeedEnableTitle.x+40, highSpeedEnableTitle.size().height+highSpeedEnableTitle.y);
-  highSpeedEnableButton.mousePressed(highSpeedCommand);
   //**************************************
   triggerOpensTitle = createElement('h4', 'Message when Contact Opens:');
   triggerOpensTitle.position(10, highSpeedEnableTitle.size().height+highSpeedEnableTitle.y+5);
@@ -259,15 +241,8 @@ function setup() {
   clockSetTimeButton = createButton('Set');
   clockSetTimeButton.position(clockSetTimeNTPtitle.x+clockSetTimeNTPtitle.size().width+10, clockSetTimeNTPtitle.y+clockSetTimeNTPtitle.size().height);
   clockSetTimeButton.mousePressed(clockSetTimeNTPCommand);
-  clockAppendTitle = createElement('h4', 'Append Time to Push Messages: ');
-  clockAppendTitle.position(20, clockSetTimeNTPtitle.size().height+clockSetTimeNTPtitle.y+5);
-  clockAppendCheckbox = createCheckbox('', false);
-  clockAppendCheckbox.position(clockAppendTitle.size().width+clockAppendTitle.x+10, clockAppendTitle.size().height+clockAppendTitle.y);
-  clockAppendButton = createButton('Save');
-  clockAppendButton.position(clockAppendTitle.size().width+clockAppendTitle.x+40, clockAppendTitle.size().height+clockAppendTitle.y);
-  clockAppendButton.mousePressed(clockAppendCommand);  
   clockAlarmEnableTitle = createElement('h4', 'Daily Alarm Wake Enable: ');
-  clockAlarmEnableTitle.position(20, clockAppendTitle.size().height+clockAppendTitle.y+5);
+  clockAlarmEnableTitle.position(20, clockAlarmEnableTitle.size().height+clockAlarmEnableTitle.y+5);
   clockAlarmEnableCheckbox = createCheckbox('', false);
   clockAlarmEnableCheckbox.position(clockAlarmEnableTitle.size().width+clockAlarmEnableTitle.x+10, clockAlarmEnableTitle.size().height+clockAlarmEnableTitle.y);
   clockAlarmEnableButton = createButton('Save');
@@ -299,37 +274,6 @@ function setup() {
   clockAlarmMessageButton = createButton('Save');
   clockAlarmMessageButton.position(clockAlarmMessage.x+clockAlarmMessage.width, clockAlarmMessage.y);
   clockAlarmMessageButton.mousePressed(clockAlarmMessageButtonCommand);
-  clockAppendAlarmTitle = createElement('h4', 'Append Time to Alarm Message: ');
-  clockAppendAlarmTitle.position(30, clockAlarmMessageTitle.size().height+clockAlarmMessageTitle.y+5);
-  clockAppendAlarmCheckbox = createCheckbox('', false);
-  clockAppendAlarmCheckbox.position(clockAppendAlarmTitle.size().width+clockAppendAlarmTitle.x+10, clockAppendAlarmTitle.size().height+clockAppendAlarmTitle.y);
-  clockAppendAlarmButton = createButton('Save');
-  clockAppendAlarmButton.position(clockAppendAlarmTitle.size().width+clockAppendAlarmTitle.x+40, clockAppendAlarmTitle.size().height+clockAppendAlarmTitle.y);
-  clockAppendAlarmButton.mousePressed(clockAppendAlarmCommand); 
-  //**************************************
-  appendRSSIenableTitle = createElement('h4', 'Append RSSI (Signal Strength) to Push Message: (supported in FW 11/29/21 or newer)');
-  appendRSSIenableTitle.position(10, clockAppendAlarmTitle.size().height+clockAppendAlarmTitle.y+5);
-  appendRSSIenableCheckbox = createCheckbox('', false);
-  appendRSSIenableCheckbox.position(appendRSSIenableTitle.size().width+appendRSSIenableTitle.x+10, appendRSSIenableTitle.size().height+appendRSSIenableTitle.y);
-  appendRSSIenableButton = createButton('Save');
-  appendRSSIenableButton.position(appendRSSIenableTitle.size().width+appendRSSIenableTitle.x+40, appendRSSIenableTitle.size().height+appendRSSIenableTitle.y);
-  appendRSSIenableButton.mousePressed(appendRSSIenableCommand); 
-  //**************************************
-  missionCriticalEnableTitle = createElement('h4', 'Mission Critical Check: (supported in FW 11/29/21 or newer)');
-  missionCriticalEnableTitle.position(10, appendRSSIenableTitle.size().height+appendRSSIenableTitle.y+5);
-  missionCriticalEnableCheckbox = createCheckbox('', false);
-  missionCriticalEnableCheckbox.position(missionCriticalEnableTitle.size().width+missionCriticalEnableTitle.x+10, missionCriticalEnableTitle.size().height+missionCriticalEnableTitle.y);
-  missionCriticalEnableButton = createButton('Save');
-  missionCriticalEnableButton.position(missionCriticalEnableTitle.size().width+missionCriticalEnableTitle.x+40, missionCriticalEnableTitle.size().height+missionCriticalEnableTitle.y);
-  missionCriticalEnableButton.mousePressed(missionCriticalEnableCommand); 
-  missionCriticalTimeTitle = createElement('h4', 'Seconds (1-60) to verify contact after wake');
-  missionCriticalTimeTitle.position(30, missionCriticalEnableTitle.size().height+missionCriticalEnableTitle.y+5);
-  missionCriticalTimeInput = createInput('');
-  missionCriticalTimeInput.size(50);
-  missionCriticalTimeInput.position(missionCriticalTimeTitle.size().width+missionCriticalTimeTitle.x+10, missionCriticalTimeTitle.size().height+missionCriticalTimeTitle.y);  
-  missionCriticalTimeButton = createButton('Save');
-  missionCriticalTimeButton.position(missionCriticalTimeInput.x+missionCriticalTimeInput.width, missionCriticalTimeInput.y);
-  missionCriticalTimeButton.mousePressed(missionCriticalTimeCommand);
   //**************************************
   loBatteryTitle = createElement('h4', 'Low Battery Voltage Threshold:');
   loBatteryTitle.position(10, missionCriticalTimeTitle.size().height+missionCriticalTimeTitle.y+5);
@@ -339,212 +283,7 @@ function setup() {
   loBatteryButton = createButton('Save');
   loBatteryButton.position(loBatteryInput.x+loBatteryInput.width, loBatteryInput.y);
   loBatteryButton.mousePressed(loBatteryCommand);
-  //**************************************
-  pushOverEnableTitle = createElement('h4', 'Pushover Enabled: ');
-  pushOverEnableTitle.position(10, loBatteryTitle.size().height+loBatteryTitle.y+5);
-  pushOverEnableCheckbox = createCheckbox('', false);
-  pushOverEnableCheckbox.position(pushOverEnableTitle.size().width+pushOverEnableTitle.x+10, pushOverEnableTitle.size().height+pushOverEnableTitle.y);
-  pushOverEnableButton = createButton('Save');
-  pushOverEnableButton.position(pushOverEnableTitle.size().width+pushOverEnableTitle.x+40, pushOverEnableTitle.size().height+pushOverEnableTitle.y);
-  pushOverEnableButton.mousePressed(pushOverEnableCommand);
-  //**************************************
-  pushCredentTitle = createElement('h4', 'Pushover Credentials:');
-  pushCredentTitle.position(30, pushOverEnableTitle.size().height+pushOverEnableTitle.y+5);
-  pushuserTitle = createElement('h4', 'User Key:');
-  pushuserTitle.position(50, pushCredentTitle.size().height+pushCredentTitle.y+5);
-  pushuserInput = createInput('', 'password');
-  pushuserInput.position(pushuserTitle.size().width+pushuserTitle.x+10, pushuserTitle.size().height+pushuserTitle.y);
-  pushapiTitle = createElement('h4', 'API Token/Key:');
-  pushapiTitle.position(50, pushuserTitle.size().height+pushuserTitle.y+5);
-  pushapiInput = createInput('', 'password');
-  pushapiInput.position(pushapiTitle.size().width+pushapiTitle.x+10, pushapiTitle.size().height+pushapiTitle.y);
-  pushOverSaveButton = createButton('Save');
-  pushOverSaveButton.position(pushapiInput.x+pushapiInput.width, pushapiInput.y);
-  pushOverSaveButton.mousePressed(pushOverSaveCommand);
-  pushOverTestButton = createButton('Test');
-  pushOverTestButton.position(pushOverSaveButton.x+pushOverSaveButton.width, pushapiInput.y);
-  pushOverTestButton.mousePressed(pushOverTestCommand);
-  //**************************************
-  pushSaferEnableTitle = createElement('h4', 'Push Safer Enabled: ');
-  pushSaferEnableTitle.position(10, pushapiTitle.size().height+pushapiTitle.y+5);
-  pushSaferEnableCheckbox = createCheckbox('', false);
-  pushSaferEnableCheckbox.position(pushSaferEnableTitle.size().width+pushSaferEnableTitle.x+10, pushSaferEnableTitle.size().height+pushSaferEnableTitle.y);
-  pushSaferEnableButton = createButton('Save');
-  pushSaferEnableButton.position(pushSaferEnableTitle.size().width+pushSaferEnableTitle.x+40, pushSaferEnableTitle.size().height+pushSaferEnableTitle.y);
-  pushSaferEnableButton.mousePressed(pushSaferEnableCommand);
-  //**************************************
-  pushSaferTitle = createElement('h4', 'Push Safer Credentials:');
-  pushSaferTitle.position(30, pushSaferEnableTitle.size().height+pushSaferEnableTitle.y+5);
-  pushSaferKeyTitle = createElement('h4', 'Key:');
-  pushSaferKeyTitle.position(50, pushSaferTitle.size().height+pushSaferTitle.y+5);
-  pushSaferInput = createInput('', 'password');
-  pushSaferInput.position(pushSaferKeyTitle.size().width+pushSaferKeyTitle.x+10, pushSaferKeyTitle.size().height+pushSaferKeyTitle.y);
-  pushSaferSaveButton = createButton('Save');
-  pushSaferSaveButton.position(pushSaferInput.x+pushapiInput.width, pushSaferInput.y);
-  pushSaferSaveButton.mousePressed(pushSaferKeySaveCommand);
-  //**************************************
-  iftttEnableTitle = createElement('h4', 'ifttt Enabled: ');
-  iftttEnableTitle.position(10, pushSaferKeyTitle.size().height+pushSaferKeyTitle.y+5);
-  iftttEnableCheckbox = createCheckbox('', false);
-  iftttEnableCheckbox.position(iftttEnableTitle.size().width+iftttEnableTitle.x+10, iftttEnableTitle.size().height+iftttEnableTitle.y);
-  iftttEnableButton = createButton('Save');
-  iftttEnableButton.position(iftttEnableTitle.size().width+iftttEnableTitle.x+40, iftttEnableTitle.size().height+iftttEnableTitle.y);
-  iftttEnableButton.mousePressed(iftttEnableCommand);
-  //**************************************
-  iftttTitle = createElement('h4', 'ifttt Credentials:');
-  iftttTitle.position(30, iftttEnableTitle.size().height+iftttEnableTitle.y+5);
-  iftttKeyTitle = createElement('h4', 'Maker Key:');
-  iftttKeyTitle.position(50, iftttTitle.size().height+iftttTitle.y+5);
-  iftttInput = createInput('', 'password');
-  iftttInput.position(iftttKeyTitle.size().width+iftttKeyTitle.x+10, iftttKeyTitle.size().height+iftttKeyTitle.y);
-  iftttSaveButton = createButton('Save');
-  iftttSaveButton.position(iftttInput.x+pushapiInput.width, iftttInput.y);
-  iftttSaveButton.mousePressed(iftttKeySaveCommand);
-  //**************************************
-  telegramEnableTitle = createElement('h4', 'Telegram Enabled: ');
-  telegramEnableTitle.position(10, iftttKeyTitle.size().height+iftttKeyTitle.y+5);
-  telegramEnableCheckbox = createCheckbox('', false);
-  telegramEnableCheckbox.position(telegramEnableTitle.size().width+telegramEnableTitle.x+10, telegramEnableTitle.size().height+telegramEnableTitle.y);
-  telegramEnableButton = createButton('Save');
-  telegramEnableButton.position(telegramEnableTitle.size().width+telegramEnableTitle.x+40, telegramEnableTitle.size().height+telegramEnableTitle.y);
-  telegramEnableButton.mousePressed(telegramEnableCommand);
-  telegramCredentTitle = createElement('h4', 'Telegram Credentials:');
-  telegramCredentTitle.position(30, telegramEnableTitle.size().height+telegramEnableTitle.y+5);
-  telegramBOTTitle = createElement('h4', 'BOT TOKEN:');
-  telegramBOTTitle.position(50, telegramCredentTitle.size().height+telegramCredentTitle.y+5);
-  telegramBOTInput = createInput('', 'password');
-  telegramBOTInput.position(telegramBOTTitle.size().width+telegramBOTTitle.x+10, telegramBOTTitle.size().height+telegramBOTTitle.y);
-  telegramCHATTitle = createElement('h4', 'CHAT ID:');
-  telegramCHATTitle.position(50, telegramBOTTitle.size().height+telegramBOTTitle.y+5);
-  telegramCHATInput = createInput('', 'password');
-  telegramCHATInput.position(telegramCHATTitle.size().width+telegramCHATTitle.x+10, telegramCHATTitle.size().height+telegramCHATTitle.y);
-  telegramSaveButton = createButton('Save');
-  telegramSaveButton.position(telegramCHATInput.x+telegramCHATInput.width, telegramCHATInput.y);
-  telegramSaveButton.mousePressed(telegramSaveCommand);
-  //**************************************
-  //udpEnableTitle = createElement('h4', 'udp enabled: ');
-  //udpEnableTitle.position(10, iftttKeyTitle.size().height+iftttKeyTitle.y+5);
-  //udpEnableCheckbox = createCheckbox('', false);
-  //udpEnableCheckbox.position(udpEnableTitle.size().width+udpEnableTitle.x+10, udpEnableTitle.size().height+udpEnableTitle.y);
-  //udpEnableButton = createButton('Save');
-  //udpEnableButton.position(udpEnableTitle.size().width+udpEnableTitle.x+40, udpEnableTitle.size().height+udpEnableTitle.y);
-  //udpEnableButton.mousePressed(udpEnableCommand);
-  //**************************************
-  udptcpTitle = createElement('h4', 'udp or tcp: ');
-  udptcpTitle.position(10, telegramCHATTitle.size().height+telegramCHATTitle.y+5);
-  udptcpSelector = createSelect();
-  udptcpSelector.position(udptcpTitle.x+udptcpTitle.size().width+10, udptcpTitle.size().height+udptcpTitle.y);
-  udptcpSelector.option('Not Enabled');
-  udptcpSelector.option('udp');
-  udptcpSelector.option('tcp');
-  udptcpSelectorButton = createButton('Save');
-  udptcpSelectorButton.position(udptcpSelector.x+udptcpSelector.width+100, udptcpSelector.y);
-  udptcpSelectorButton.mousePressed(udptcpSelectorCommand);
-
-  //**************************************
-  udpTitle = createElement('h4', 'udp Settings:');
-  tcpTitle = createElement('h4', 'tcp Settings: (supported in FW 12/20/20 or newer');
-  tcpTitle.position(30, udptcpTitle.size().height+udptcpTitle.y+5);
-  udpTitle.position(30, udptcpTitle.size().height+udptcpTitle.y+5);
-  udpSSIDTitle = createElement('h4', 'SSID:');
-  udpSSIDTitle.position(50, udpTitle.size().height+udpTitle.y+5);
-  udpSSIDInput = createInput('');
-  udpSSIDInput.position(udpSSIDTitle.size().width+udpSSIDTitle.x+10, udpSSIDTitle.size().height+udpSSIDTitle.y);
-  udpPWTitle = createElement('h4', 'Password:');
-  udpPWTitle.position(50, udpSSIDTitle.size().height+udpSSIDTitle.y+5);
-  udpPWInput = createInput('', 'password');
-  udpPWInput.position(udpPWTitle.size().width+udpPWTitle.x+10, udpPWTitle.size().height+udpPWTitle.y);
-  udpStaticIPTitle = createElement('h4', 'Static IP:');
-  udpStaticIPTitle.position(50, udpPWTitle.size().height+udpPWTitle.y+5);
-  udpStaticIPInput = createInput('');
-  udpStaticIPInput.position(udpStaticIPTitle.size().width+udpStaticIPTitle.x+10, udpStaticIPTitle.size().height+udpStaticIPTitle.y);
-  udpTargetIPTitle = createElement('h4', 'Target IP:');
-  udpTargetIPTitle.position(50, udpStaticIPTitle.size().height+udpStaticIPTitle.y+5);
-  udpTargetIPInput = createInput('');
-  udpTargetIPInput.position(udpTargetIPTitle.size().width+udpTargetIPTitle.x+10, udpTargetIPTitle.size().height+udpTargetIPTitle.y);
-  udpPortTitle = createElement('h4', 'Target Port:');
-  udpPortTitle.position(50, udpTargetIPTitle.size().height+udpTargetIPTitle.y+5);
-  udpPortInput = createInput('');
-  udpPortInput.size(50);
-  udpPortInput.position(udpPortTitle.size().width+udpPortTitle.x+10, udpPortTitle.size().height+udpPortTitle.y);
-  udpGatewayTitle = createElement('h4', 'Gateway:');
-  udpGatewayTitle.position(50, udpPortTitle.size().height+udpPortTitle.y+5);
-  udpGatewayInput = createInput('');
-  udpGatewayInput.position(udpGatewayTitle.size().width+udpGatewayTitle.x+10, udpGatewayTitle.size().height+udpGatewayTitle.y);
-  udpSubnetTitle = createElement('h4', 'Subnet:');
-  udpSubnetTitle.position(50, udpGatewayTitle.size().height+udpGatewayTitle.y+5);
-  udpSubnetInput = createInput('');
-  udpSubnetInput.position(udpSubnetTitle.size().width+udpSubnetTitle.x+10, udpSubnetTitle.size().height+udpSubnetTitle.y);
-  udpPrimaryDNSTitle = createElement('h4', 'Primary DNS:');
-  udpPrimaryDNSTitle.position(50, udpSubnetTitle.size().height+udpSubnetTitle.y+5);
-  udpPrimaryDNSInput = createInput('');
-  udpPrimaryDNSInput.position(udpPrimaryDNSTitle.size().width+udpPrimaryDNSTitle.x+10, udpPrimaryDNSTitle.size().height+udpPrimaryDNSTitle.y);
-  udpSecondaryDNSTitle = createElement('h4', 'Secondary DNS:');
-  udpSecondaryDNSTitle.position(50, udpPrimaryDNSTitle.size().height+udpPrimaryDNSTitle.y+5);
-  udpSecondaryDNSInput = createInput('');
-  udpSecondaryDNSInput.position(udpSecondaryDNSTitle.size().width+udpSecondaryDNSTitle.x+10, udpSecondaryDNSTitle.size().height+udpSecondaryDNSTitle.y);
-  tcpReCountTitle = createElement('h4', 'Retries:');
-  tcpReCountTitle.position(50, udpSecondaryDNSTitle.size().height+udpSecondaryDNSTitle.y+5);
-  udpBlastCountTitle = createElement('h4', 'Blast Count:');
-  udpBlastCountTitle.position(50, udpSecondaryDNSTitle.size().height+udpSecondaryDNSTitle.y+5);
-  udpBlastCountInput = createInput('');
-  udpBlastCountInput.size(30);
-  udpBlastCountInput.position(udpBlastCountTitle.size().width+udpBlastCountTitle.x+10, udpBlastCountTitle.size().height+udpBlastCountTitle.y);
-  udpBlastTimeTitle = createElement('h4', 'Time Between Blasts (ms):');
-  udpBlastTimeTitle.position(50, udpBlastCountTitle.size().height+udpBlastCountTitle.y+5);
-  udpBlastTimeInput = createInput('');
-  udpBlastTimeInput.size(30);
-  udpBlastTimeInput.position(udpBlastTimeTitle.size().width+udpBlastTimeTitle.x+10, udpBlastTimeTitle.size().height+udpBlastTimeTitle.y);
-  udpSaveButton = createButton('Save and Connect');
-  udpSaveButton.position(udpBlastTimeInput.size().width+udpBlastTimeInput.x+10, udpBlastTimeInput.y);
-  udpSaveButton.mousePressed(udpSaveCommand);
-  //**************************************
-  mqttEnableTitle = createElement('h4', 'mqtt Enabled: ');
-  mqttEnableTitle.position(10, udpBlastTimeTitle.size().height+udpBlastTimeTitle.y+5);
-  mqttEnableCheckbox = createCheckbox('', false);
-  mqttEnableCheckbox.position(mqttEnableTitle.size().width+mqttEnableTitle.x+10, mqttEnableTitle.size().height+mqttEnableTitle.y);
-  mqttEnableButton = createButton('Save');
-  mqttEnableButton.position(mqttEnableTitle.size().width+mqttEnableTitle.x+40, mqttEnableTitle.size().height+mqttEnableTitle.y);
-  mqttEnableButton.mousePressed(mqttEnableCommand);
-
-  //**************************************
-
-  mqttSecEnableTitle = createElement('h4', 'Security Enabled: ');
-  mqttSecEnableTitle.position(30, mqttEnableTitle.size().height+mqttEnableTitle.y+5);
-  mqttSecEnableCheckbox = createCheckbox('', false);
-  mqttSecEnableCheckbox.position(mqttSecEnableTitle.size().width+mqttSecEnableTitle.x+10, mqttSecEnableTitle.size().height+mqttSecEnableTitle.y);
-  mqttSecEnableButton = createButton('Save');
-  mqttSecEnableButton.position(mqttSecEnableTitle.size().width+mqttSecEnableTitle.x+40, mqttSecEnableTitle.size().height+mqttSecEnableTitle.y);
-  mqttSecEnableButton.mousePressed(mqttSecEnableCommand);
-  //**************************************
-  mqttUserTitle = createElement('h4', 'Username:');
-  mqttUserTitle.position(50, mqttSecEnableTitle.size().height+mqttSecEnableTitle.y+5);
-  mqttUserInput = createInput('');
-  mqttUserInput.position(mqttUserTitle.size().width+mqttUserTitle.x+10, mqttUserTitle.size().height+mqttUserTitle.y);
-  mqttPWTitle = createElement('h4', 'Password:');
-  mqttPWTitle.position(50, mqttUserTitle.size().height+mqttUserTitle.y+5);
-  mqttPWInput = createInput('', 'password');
-  mqttPWInput.position(mqttPWTitle.size().width+mqttPWTitle.x+10, mqttPWTitle.size().height+mqttPWTitle.y);
-
-  //**************************************
-  mqttTitle = createElement('h4', 'mqtt Settings:');
-  mqttTitle.position(30, mqttPWTitle.size().height+mqttPWTitle.y+5);
-  mqttPortTitle = createElement('h4', 'Port:');
-  mqttPortTitle.position(50, mqttTitle.size().height+mqttTitle.y+5);
-  mqttPortInput = createInput('');
-  mqttPortInput.position(mqttPortTitle.size().width+mqttPortTitle.x+10, mqttPortTitle.size().height+mqttPortTitle.y);
-  mqttServerTitle = createElement('h4', 'Server:');
-  mqttServerTitle.position(50, mqttPortTitle.size().height+mqttPortTitle.y+5);
-  mqttServerInput = createInput('');
-  mqttServerInput.position(mqttServerTitle.size().width+mqttServerTitle.x+10, mqttServerTitle.size().height+mqttServerTitle.y);
-  mqttTopicTitle = createElement('h4', 'Topic:');
-  mqttTopicTitle.position(50, mqttServerTitle.size().height+mqttServerTitle.y+5);
-  mqttTopicInput = createInput('');
-  mqttTopicInput.position(mqttTopicTitle.size().width+mqttTopicTitle.x+10, mqttTopicTitle.size().height+mqttTopicTitle.y);
-  mqttSaveButton = createButton('Save');
-  mqttSaveButton.position(mqttTopicInput.x+mqttTopicInput.width, mqttTopicInput.y);
-  mqttSaveButton.mousePressed(mqttKeySaveCommand);
-  //**************************************
+ //**************************************
   batteryOffsetTitle = createElement('h4', 'Battery Voltage  Calibration Offset:');
   batteryOffsetTitle.position(10, mqttTopicTitle.size().height+mqttTopicTitle.y+50);
   batteryOffsetInput = createInput('');
