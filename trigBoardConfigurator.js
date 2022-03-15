@@ -147,7 +147,7 @@ function setup() {
   triggerSelectorButton.mousePressed(triggerSelectorCommand);
   //**************************************
   triggerOpensTitle = createElement('h4', 'Message when Contact Opens:');
-  triggerOpensTitle.position(10, highSpeedEnableTitle.size().height+highSpeedEnableTitle.y+5);
+  triggerOpensTitle.position(10, trigTriggerSelectionTitle.size().height+trigTriggerSelectionTitle.y+5);
   triggerOpensInput = createInput('');
   triggerOpensInput.position(triggerOpensTitle.size().width+triggerOpensTitle.x+10, triggerOpensTitle.size().height+triggerOpensTitle.y);  
   triggerOpensButton = createButton('Save');
@@ -242,7 +242,7 @@ function setup() {
   clockSetTimeButton.position(clockSetTimeNTPtitle.x+clockSetTimeNTPtitle.size().width+10, clockSetTimeNTPtitle.y+clockSetTimeNTPtitle.size().height);
   clockSetTimeButton.mousePressed(clockSetTimeNTPCommand);
   clockAlarmEnableTitle = createElement('h4', 'Daily Alarm Wake Enable: ');
-  clockAlarmEnableTitle.position(20, clockAlarmEnableTitle.size().height+clockAlarmEnableTitle.y+5);
+  clockAlarmEnableTitle.position(20, clockSetTimeButton.size().height+clockSetTimeButton.y+5);
   clockAlarmEnableCheckbox = createCheckbox('', false);
   clockAlarmEnableCheckbox.position(clockAlarmEnableTitle.size().width+clockAlarmEnableTitle.x+10, clockAlarmEnableTitle.size().height+clockAlarmEnableTitle.y);
   clockAlarmEnableButton = createButton('Save');
@@ -276,7 +276,7 @@ function setup() {
   clockAlarmMessageButton.mousePressed(clockAlarmMessageButtonCommand);
   //**************************************
   loBatteryTitle = createElement('h4', 'Low Battery Voltage Threshold:');
-  loBatteryTitle.position(10, missionCriticalTimeTitle.size().height+missionCriticalTimeTitle.y+5);
+  loBatteryTitle.position(10, clockAlarmMessageTitle.size().height+clockAlarmMessageTitle.y+5);
   loBatteryInput = createInput('');
   loBatteryInput.size(40);
   loBatteryInput.position(loBatteryTitle.size().width+loBatteryTitle.x+10, loBatteryTitle.size().height+loBatteryTitle.y);  
@@ -285,7 +285,7 @@ function setup() {
   loBatteryButton.mousePressed(loBatteryCommand);
  //**************************************
   batteryOffsetTitle = createElement('h4', 'Battery Voltage  Calibration Offset:');
-  batteryOffsetTitle.position(10, mqttTopicTitle.size().height+mqttTopicTitle.y+50);
+  batteryOffsetTitle.position(10, loBatteryTitle.size().height+loBatteryTitle.y+5);
   batteryOffsetInput = createInput('');
   batteryOffsetInput.size(40);
   batteryOffsetInput.position(batteryOffsetTitle.size().width+batteryOffsetTitle.x+10, batteryOffsetTitle.size().height+batteryOffsetTitle.y);  
@@ -293,8 +293,42 @@ function setup() {
   batteryOffsetButton.position(batteryOffsetInput.x+batteryOffsetInput.width, batteryOffsetInput.y);
   batteryOffsetButton.mousePressed(batteryOffsetCommand);
   //**************************************
+  agriwebbEnableTitle = createElement('h4', 'Agriwebb Enabled: ');
+  agriwebbEnableTitle.position(10, batteryOffsetTitle.size().height+batteryOffsetTitle.y+5);
+  agriwebbEnableCheckbox = createCheckbox('', false);
+  agriwebbEnableCheckbox.position(agriwebbEnableTitle.size().width+agriwebbEnableTitle.x+10, agriwebbEnableTitle.size().height+agriwebbEnableTitle.y);
+  agriwebbEnableButton = createButton('Save');
+  agriwebbEnableButton.position(agriwebbEnableTitle.size().width+agriwebbEnableTitle.x+40, agriwebbEnableTitle.size().height+agriwebbEnableTitle.y);
+  agriwebbEnableButton.mousePressed(agriwebbEnableCommand);
+  
+  agriwebbTitle = createElement('h4', 'Agriwebb Settings:');
+  agriwebbTitle.position(10, agriwebbEnableTitle.size().height+agriwebbEnableTitle.y+5);
 
-  createCanvas(600, batteryOffsetInput.y+100);
+  agriwebbApiKeyTitle = createElement('h4', 'API Key:');
+  agriwebbApiKeyTitle.position(10, agriwebbTitle.size().height+agriwebbTitle.y+5); 
+  agriwebbApiKeyInput = createInput('');
+  agriwebbApiKeyInput.position(agriwebbApiKeyTitle.size().width+agriwebbApiKeyTitle.x+10, agriwebbApiKeyTitle.size().height+agriwebbApiKeyTitle.y);  
+
+  agriwebbFarmIdTitle = createElement('h4', 'Farm ID:');
+  agriwebbFarmIdTitle.position(10, agriwebbApiKeyTitle.size().height+agriwebbApiKeyTitle.y+5); 
+  agriwebbFarmIdInput = createInput('');
+  agriwebbFarmIdInput.position(agriwebbFarmIdTitle.size().width+agriwebbFarmIdTitle.x+10, agriwebbFarmIdTitle.size().height+agriwebbFarmIdTitle.y);  
+
+  agriwebbSensorIdTitle = createElement('h4', 'Sensor ID:');
+  agriwebbSensorIdTitle.position(10, agriwebbFarmIdTitle.size().height+agriwebbFarmIdTitle.y+5); 
+  agriwebbSensorIdInput = createInput('');
+  agriwebbSensorIdInput.position(agriwebbSensorIdTitle.size().width+agriwebbSensorIdTitle.x+10, agriwebbSensorIdTitle.size().height+agriwebbSensorIdTitle.y); 
+  
+  agriwebbModeTitle = createElement('h4', 'Mode:');
+  agriwebbModeTitle.position(10, agriwebbSensorIdTitle.size().height+agriwebbSensorIdTitle.y+5); 
+  agriwebbModeInput = createInput('');
+  agriwebbModeInput.position(agriwebbModeTitle.size().width+agriwebbModeTitle.x+10, agriwebbModeTitle.size().height+agriwebbModeTitle.y); 
+
+  agriwebbSaveButton = createButton('Save');
+  agriwebbSaveButton.position(agriwebbModeInput.x+agriwebbModeInput.width, agriwebbModeInput.y);
+  agriwebbSaveButton.mousePressed(agriwebbCommand);
+
+  createCanvas(600, agriwebbModeInput.y+100);
 
 
   hideAllParam();
