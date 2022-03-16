@@ -326,7 +326,7 @@ function setup() {
 
   agriwebbSaveButton = createButton('Save');
   agriwebbSaveButton.position(agriwebbModeInput.x+agriwebbModeInput.width, agriwebbModeInput.y);
-  agriwebbSaveButton.mousePressed(agriwebbCommand);
+  agriwebbSaveButton.mousePressed(agriwebbSaveCommand);
 
   createCanvas(600, agriwebbModeInput.y+100);
 

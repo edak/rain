@@ -35,15 +35,6 @@ function clockTimerEnableCommand() {
   }
 }
 
-function agriwebbEnableCommand() {
-  if (agriwebbEnableCheckbox.checked()) {
-    sendData("#agren");
-  } else {
-    sendData("#agrdi");
-  }
-}
-
-
 function clockTimeZoneButtonCommand() {
   let sanitizer = checkUserString(clockTimeZone.value(), 5);
   if (sanitizer!=null) {
@@ -265,6 +256,17 @@ function staticEnableCommand() {
   }
 }
 
+
+function agriwebbEnableCommand() {
+  if (agriwebbEnableCheckbox.checked()) {
+    sendData("#agren");
+  } else {
+    sendData("#agrdi");
+  }
+}
+
+
+
 function batteryOffsetCommand() {
   let sanitizer = checkUserString(batteryOffsetInput.value(), 10);
   if (sanitizer!=null) {
@@ -277,6 +279,31 @@ function batteryOffsetCommand() {
   }
 
   sendData("#boff,"+batteryOffsetInput.value());
+}
+
+function agriwebbSaveCommand() {
+
+  let sanitize = checkUserString(agriwebbApiKeyInput.value(), 45);
+  if (sanitize!=null) {
+    agriwebbApiKeyInput.value(sanitize);
+    return;
+  }
+  sanitize = checkUserString(agriwebbFarmIdInput.value(), 45);
+  if (sanitize!=null) {
+    agriwebbFarmIdInput.value(sanitize);
+    return;
+  }
+  sanitize = checkUserString(agriwebbSensorIdInput.value(), 45);
+  if (sanitize!=null) {
+    agriwebbSensorIdInput.value(sanitize);
+    return;
+  } 
+  sanitize = checkUserString(agriwebbModeInput.value(), 20);
+  if (sanitize!=null) {
+    agriwebbModeInput.value(sanitize);
+    return;
+  } 
+  sendData("#agrset,"+agriwebbApiKeyInput.value()+","+agriwebbFarmIdInput.value()+","+agriwebbSensorIdInput.value()+","+agriwebbModeInput.value());
 }
 
 function staticSaveCommand() {
