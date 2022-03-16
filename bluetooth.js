@@ -295,20 +295,7 @@ function gotValue(value) {
   if (splitString[0]=='sdnsip') {//sec dns
     staticSecondaryDNSInput.value(splitString[1]);
   }
-  if (splitString[0]=='udpBla') {//udp blast count
-    udpBlastCountInput.value(splitString[1]);
-  }
-  if (splitString[0]=='udpTim') {//udp time
-    udpBlastTimeInput.value(splitString[1]);
-  }
 
-  if (splitString[0]=='highSpd') {//high speed mode
-    if (splitString[1]=='t') {
-      highSpeedEnableCheckbox.checked(true);
-    } else {
-      highSpeedEnableCheckbox.checked(false);
-    }
-  }
   if (splitString[0]=='clkEnable') {//clock enable
     if (splitString[1]=='t') {
       clockTimerEnableCheckbox.checked(true);
@@ -432,25 +419,6 @@ function gotValue(value) {
       appendRSSIenableCheckbox.checked(false);
     }
   }
-
-  if (splitString[0]=='missionEnable') {//mission critical enable
-    if (splitString[1]=='t') {
-      missionCriticalEnableCheckbox.checked(true);
-      missionCriticalTimeTitle.show();
-      missionCriticalTimeInput.show();
-      missionCriticalTimeButton.show();
-    } else {
-      missionCriticalEnableCheckbox.checked(false);
-      missionCriticalTimeTitle.hide();
-      missionCriticalTimeInput.hide();
-      missionCriticalTimeButton.hide();
-    }
-  }
-
-  if (splitString[0]=='missionTimeafter') {//mission critical time
-    missionCriticalTimeInput.value(splitString[1]);
-  }
-
 
   if (splitString[0]=='OTAprog') {//OTA IS IN PROGRESS
     OTAinProgress=splitString[1];
