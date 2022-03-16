@@ -34,6 +34,16 @@ function clockTimerEnableCommand() {
     sendData("#clkdi");
   }
 }
+
+function agriwebbEnableCommand() {
+  if (agriwebbEnableCheckbox.checked()) {
+    sendData("#agren");
+  } else {
+    sendData("#agrdi");
+  }
+}
+
+
 function clockTimeZoneButtonCommand() {
   let sanitizer = checkUserString(clockTimeZone.value(), 5);
   if (sanitizer!=null) {
