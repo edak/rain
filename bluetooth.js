@@ -304,9 +304,6 @@ function gotValue(value) {
       clockTimeZone.show();
       clockTimeZoneButton.show();
       clockSetTimeNTPtitle.show();
-      clockAppendTitle.show();
-      clockAppendCheckbox.show();
-      clockAppendButton.show();
       clockAlarmEnableTitle.show();
       clockAlarmEnableCheckbox.show();
       clockAlarmEnableButton.show();
@@ -318,9 +315,6 @@ function gotValue(value) {
       clockTimeZoneButton.hide();
       clockSetTimeNTPtitle.hide();
       clockSetTimeButton.hide();
-      clockAppendTitle.hide();
-      clockAppendCheckbox.hide();
-      clockAppendButton.hide();
       clockAlarmEnableTitle.hide();
       clockAlarmEnableCheckbox.hide();
       clockAlarmEnableButton.hide();
@@ -348,13 +342,7 @@ function gotValue(value) {
   if (splitString[0]=='clkTimeZone') {//clock time zone
     clockTimeZone.value(splitString[1]);
   }
-  if (splitString[0]=='clkAppendEnable') {//clock append enable
-    if (splitString[1]=='t') {
-      clockAppendCheckbox.checked(true);
-    } else {
-      clockAppendCheckbox.checked(false);
-    }
-  }
+
   if (splitString[0]=='clkAlarmEnable') {//clock append enable
     if (splitString[1]=='t') {
       clockAlarmEnableCheckbox.checked(true);
@@ -368,9 +356,6 @@ function gotValue(value) {
       clockAlarmMessageTitle.show();
       clockAlarmMessage.show();
       clockAlarmMessageButton.show();
-      clockAppendAlarmTitle.show();
-      clockAppendAlarmCheckbox.show();
-      clockAppendAlarmButton.show();
     } else {
       clockAlarmEnableCheckbox.checked(false);
       clockAlarmSettingTitle.hide();
@@ -383,9 +368,6 @@ function gotValue(value) {
       clockAlarmMessageTitle.hide();
       clockAlarmMessage.hide();
       clockAlarmMessageButton.hide();
-      clockAppendAlarmTitle.hide();
-      clockAppendAlarmCheckbox.hide();
-      clockAppendAlarmButton.hide();
     }
   }
   if (splitString[0]=='clkAlarmHour') {//clock alarm hour
@@ -403,21 +385,6 @@ function gotValue(value) {
   }
   if (splitString[0]=='clkAlarmMessage') {//clock alarm message
     clockAlarmMessage.value(splitString[1]);
-  }
-  if (splitString[0]=='clkAppendAlmEnable') {//clock alarm append time
-    if (splitString[1]=='t') {
-      clockAppendAlarmCheckbox.checked(true);
-    } else {
-      clockAppendAlarmCheckbox.checked(false);
-    }
-  }
-
-  if (splitString[0]=='appendRSSI') {//append rssi
-    if (splitString[1]=='t') {
-      appendRSSIenableCheckbox.checked(true);
-    } else {
-      appendRSSIenableCheckbox.checked(false);
-    }
   }
 
   if (splitString[0]=='OTAprog') {//OTA IS IN PROGRESS
