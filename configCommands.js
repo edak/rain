@@ -28,7 +28,7 @@ function checkUserIPaddress(userIP) {
 }
 
 function clockTimerEnableCommand() {
-  if (clockTimerEnableCheckbox.checked()) {
+  if (clockTimerEnableCheckbox.checked()) { 
     sendData("#clken");
   } else {
     sendData("#clkdi");
