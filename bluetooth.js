@@ -190,225 +190,10 @@ function gotValue(value) {
   if (splitString[0]=='bof') {//battery offset
     batteryOffsetInput.value(splitString[1]);
   } 
-
-
-
-  if (splitString[0]=='poe') {//push over enable
-    if (splitString[1]=='t') {
-      pushOverEnableCheckbox.checked(true);
-      pushCredentTitle.show();
-      pushuserTitle.show();
-      pushuserInput.show();
-      pushapiTitle.show();
-      pushapiInput.show();
-      pushOverSaveButton.show();
-    } else {
-      pushOverEnableCheckbox.checked(false);
-      pushCredentTitle.hide();
-      pushuserTitle.hide();
-      pushuserInput.hide();
-      pushapiTitle.hide();
-      pushapiInput.hide();
-      pushOverSaveButton.hide();
-    }
-  } 
-  if (splitString[0]=='pouser') {//user key
-    pushuserInput.value(splitString[1]);
-  }  
-  if (splitString[0]=='poapi') {//api key
-    pushapiInput.value(splitString[1]);
-  }
   if (splitString[0]=='wak') {//wake button message
     wakeButtonInput.value(splitString[1]);
   }
 
-  if (splitString[0]=='pse') {//push safer enable
-    if (splitString[1]=='t') {
-      pushSaferEnableCheckbox.checked(true);
-      pushSaferTitle.show();
-      pushSaferKeyTitle.show();
-      pushSaferInput.show();
-      pushSaferSaveButton.show();
-    } else {
-      pushSaferEnableCheckbox.checked(false);
-      pushSaferTitle.hide();
-      pushSaferKeyTitle.hide();
-      pushSaferInput.hide();
-      pushSaferSaveButton.hide();
-    }
-  }
-  if (splitString[0]=='psk') {//push safer key
-    pushSaferInput.value(splitString[1]);
-  }
-  if (splitString[0]=='ife') {//ifttt enable
-    if (splitString[1]=='t') {
-      iftttEnableCheckbox.checked(true);
-      iftttTitle.show();
-      iftttKeyTitle.show();
-      iftttInput.show();
-      iftttSaveButton.show();
-    } else {
-      iftttEnableCheckbox.checked(false);
-      iftttTitle.hide();
-      iftttKeyTitle.hide();
-      iftttInput.hide();
-      iftttSaveButton.hide();
-    }
-  }
-  if (splitString[0]=='ifk') {//ifttt key
-    iftttInput.value(splitString[1]);
-  }
-  if (splitString[0]=='telegramEnable') {//telegram enable
-    if (splitString[1]=='t') {
-      telegramEnableCheckbox.checked(true);
-      telegramCredentTitle.show();
-      telegramBOTTitle.show();
-      telegramBOTInput.show();
-      telegramCHATTitle.show();
-      telegramCHATInput.show();
-      telegramSaveButton.show();
-    } else {
-      iftttEnableCheckbox.checked(false);
-      telegramCredentTitle.hide();
-      telegramBOTTitle.hide();
-      telegramBOTInput.hide();
-      telegramCHATTitle.hide();
-      telegramCHATInput.hide();
-      telegramSaveButton.hide();
-    }
-  }
-  if (splitString[0]=='telegramBOT') {//telegram bot token
-    telegramBOTInput.value(splitString[1]);
-  }
-  if (splitString[0]=='telegramCHAT') {//telegram chat ID
-    telegramCHATInput.value(splitString[1]);
-  }
-
-
-  if (splitString[0]=='ude') {//udp enable
-    udpEnabled=false;
-    if (splitString[1]=='t') {
-      udpEnabled=true;
-      udptcpSelector.value('udp');
-      tcpReCountTitle.hide();
-      udpTitle.show();
-      tcpTitle.hide();
-      udpSSIDTitle.show();
-      udpSSIDInput.show();
-      udpPWTitle.show();
-      udpPWInput.show();
-      udpStaticIPTitle.show();
-      udpStaticIPInput.show();
-      udpTargetIPTitle.show();
-      udpTargetIPInput.show();
-      udpPortTitle.show();
-      udpPortInput.show();
-      udpGatewayTitle.show();
-      udpGatewayInput.show();
-      udpSubnetTitle.show();
-      udpSubnetInput.show();
-      udpPrimaryDNSTitle.show();
-      udpPrimaryDNSInput.show();
-      udpSecondaryDNSTitle.show();
-      udpSecondaryDNSInput.show();
-      udpSaveButton.show();
-      udpBlastCountTitle.show();
-      udpBlastCountInput.show();
-      udpBlastTimeTitle.show();
-      udpBlastTimeInput.show();
-    }
-  }
-  if (splitString[0]=='tce') {//tcp enable
-    tcpEnabled=false;
-    if (splitString[1]=='t') {
-      tcpEnabled=true;
-      udptcpSelector.value('tcp');
-      udpTitle.hide();
-      tcpTitle.show();
-      udpSSIDTitle.show();
-      udpSSIDInput.show();
-      udpPWTitle.show();
-      udpPWInput.show();
-      udpStaticIPTitle.show();
-      udpStaticIPInput.show();
-      udpTargetIPTitle.show();
-      udpTargetIPInput.show();
-      udpPortTitle.hide();
-      udpPortInput.hide();
-      udpGatewayTitle.show();
-      udpGatewayInput.show();
-      udpSubnetTitle.show();
-      udpSubnetInput.show();
-      udpPrimaryDNSTitle.show();
-      udpPrimaryDNSInput.show();
-      udpSecondaryDNSTitle.show();
-      udpSecondaryDNSInput.show();
-      udpSaveButton.show();
-      tcpReCountTitle.show();
-      udpBlastCountTitle.hide();
-      udpBlastCountInput.show();
-      udpBlastTimeTitle.hide();
-      udpBlastTimeInput.hide();
-    }
-  }  
-
-  if (!udpEnabled && !tcpEnabled && (splitString[0]=='tce' || splitString[0]=='ude')) {
-    udptcpSelector.value('Not Enabled');
-    tcpTitle.hide();
-    udpTitle.hide();
-    udpSSIDTitle.hide();
-    udpSSIDInput.hide();
-    udpPWTitle.hide();
-    udpPWInput.hide();
-    udpStaticIPTitle.hide();
-    udpStaticIPInput.hide();
-    udpTargetIPTitle.hide();
-    udpTargetIPInput.hide();
-    udpPortTitle.hide();
-    udpPortInput.hide();
-    udpGatewayTitle.hide();
-    udpGatewayInput.hide();
-    udpSubnetTitle.hide();
-    udpSubnetInput.hide();
-    udpPrimaryDNSTitle.hide();
-    udpPrimaryDNSInput.hide();
-    udpSecondaryDNSTitle.hide();
-    udpSecondaryDNSInput.hide();
-    udpSaveButton.hide();
-    udpBlastCountTitle.hide();
-    udpBlastCountInput.hide();
-    udpBlastTimeTitle.hide();
-    udpBlastTimeInput.hide();
-    tcpReCountTitle.hide();
-  }
-
-  if (splitString[0]=='udt') {//udp settings
-    udpTargetIPInput.value(splitString[1]);
-  }
-  if (splitString[0]=='uds') {//udp settings
-    udpStaticIPInput.value(splitString[1]);
-  } 
-  if (splitString[0]=='udg') {//udp settings
-    udpGatewayInput.value(splitString[1]);
-  }  
-  if (splitString[0]=='udb') {//udp settings
-    udpSubnetInput.value(splitString[1]);
-  }
-  if (splitString[0]=='uddns') {//udp settings
-    udpPrimaryDNSInput.value(splitString[1]);
-  } 
-  if (splitString[0]=='uddnss') {//udp settings
-    udpSecondaryDNSInput.value(splitString[1]);
-  }
-  if (splitString[0]=='udsi') {//udp settings
-    udpSSIDInput.value(splitString[1]);
-  }
-  if (splitString[0]=='udpw') {//udp settings
-    udpPWInput.value(splitString[1]);
-  }
-  if (splitString[0]=='udport') {//udp settings
-    udpPortInput.value(splitString[1]);
-  }
 
   if (splitString[0]=='rtcm') {//timer units 
     if (splitString[1]=='t') {
@@ -417,81 +202,55 @@ function gotValue(value) {
       timerUnitSelector.value('Seconds');
     }
   }
-  if (splitString[0]=='mqe') {//mqtt enable
+  
+  if (splitString[0]=='agriwebbEnable') {//agriwebb enabled
     if (splitString[1]=='t') {
-      mqttEnableCheckbox.checked(true);
-      mqttTitle.show();
-      mqttPortTitle.show();
-      mqttPortInput.show();
-      mqttServerTitle.show();
-      mqttServerInput.show();
-      mqttTopicTitle.show();
-      mqttTopicInput.show();
-      mqttSaveButton.show();
-      mqttSecEnableTitle.show();
-      mqttSecEnableCheckbox.show();
-      mqttSecEnableButton.show();
-      //mqttUserTitle.show();
-      //mqttUserInput.show();
-      //mqttPWTitle.show();
-      //mqttPWInput.show();
+      agriwebbEnableCheckbox.checked(true);
+      agriwebbEnableTitle.show();
+      agriwebbEnableButton.show();
+      agriwebbTitle.show();
+      agriwebbApiKeyTitle.show();
+      agriwebbApiKeyInput.show();
+      agriwebbFarmIdTitle.show();
+      agriwebbFarmIdInput.show();
+      agriwebbSensorIdTitle.show();
+      agriwebbSensorIdInput.show();
+      agriwebbModeTitle.show();
+      agriwebbModeInput.show();
+      agriwebbSaveButton.show();
+
     } else {
-      mqttEnableCheckbox.checked(false);
-      mqttTitle.hide();
-      mqttPortTitle.hide();
-      mqttPortInput.hide();
-      mqttServerTitle.hide();
-      mqttServerInput.hide();
-      mqttTopicTitle.hide();
-      mqttTopicInput.hide();
-      mqttSaveButton.hide();
-      mqttSecEnableTitle.hide();
-      mqttSecEnableCheckbox.hide();
-      mqttSecEnableButton.hide();
-      mqttUserTitle.hide();
-      mqttUserInput.hide();
-      mqttPWTitle.hide();
-      mqttPWInput.hide();
+      agriwebbEnableCheckbox.checked(false);
+      agriwebbEnableTitle.hide();
+      agriwebbEnableButton.hide();
+      agriwebbTitle.hide();
+      agriwebbApiKeyTitle.hide();
+      agriwebbApiKeyInput.hide();
+      agriwebbFarmIdTitle.hide();
+      agriwebbFarmIdInput.hide();
+      agriwebbSensorIdTitle.hide();
+      agriwebbSensorIdInput.hide();
+      agriwebbModeTitle.hide();
+      agriwebbModeInput.hide();
+      agriwebbSaveButton.hide();
     }
   }
 
-  if (splitString[0]=='mqp') {//mqtt port 
-    mqttPortInput.value(splitString[1]);
+  if (splitString[0]=='agriwebbApi_Key') {//API Key  
+    agriwebbApiKeyInput.value(splitString[1]);
+  }
+  
+  if (splitString[0]=='agriwebbFarmId') {//API Key  
+    agriwebbFarmIdInput.value(splitString[1]);
   }
 
-  if (splitString[0]=='mqs') {//mqtt server 
-    mqttServerInput.value(splitString[1]);
+  if (splitString[0]=='agriwebbSensorId') {//API Key  
+    agriwebbSensorIdInput.value(splitString[1]);
   }
-  if (splitString[0]=='mqt') {//mqtt topic 
-    mqttTopicInput.value(splitString[1]);
-  }
-
-
-  if (splitString[0]=='mqse') {//mqtt sec enable 
-    if (splitString[1]=='t') {
-      mqttSecEnableCheckbox.checked(true);
-      mqttUserTitle.show();
-      mqttUserInput.show();
-      mqttPWTitle.show();
-      mqttPWInput.show();
-    } else {
-      mqttSecEnableCheckbox.checked(false);
-      mqttUserTitle.hide();
-      mqttUserInput.hide();
-      mqttPWTitle.hide();
-      mqttPWInput.hide();
-    }
+  if (splitString[0]=='agriwebbMode') {//API Key  
+    agriwebbModeInput.value(splitString[1]);
   }
 
-  if (splitString[0]=='mqsu') {//mqtt user 
-    mqttUserInput.value(splitString[1]);
-  }
-  if (splitString[0]=='mqsp') {//mqtt user 
-    mqttPWInput.value(splitString[1]);
-  }
-  if (splitString[0]=='mqsp') {//mqtt user 
-    mqttPWInput.value(splitString[1]);
-  }
   if (splitString[0]=='sipen') {//static ip enable 
     if (splitString[1]=='t') {
       staticEnableCheckbox.checked(true);

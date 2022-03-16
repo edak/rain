@@ -68,6 +68,20 @@ function showAllParam() {
   clockTimerEnableTitle.show();
   clockTimerEnableCheckbox.show();
   clockTimerEnableButton.show();
+  
+  agriwebbEnableTitle.show();
+  agriwebbEnableCheckbox.show();
+  agriwebbEnableButton.show();
+  agriwebbTitle.show();
+  agriwebbApiKeyTitle.show();
+  agriwebbApiKeyInput.show();
+  agriwebbFarmIdTitle.show();
+  agriwebbFarmIdInput.show();
+  agriwebbSensorIdTitle.show();
+  agriwebbSensorIdInput.show();
+  agriwebbModeTitle.show();
+  agriwebbModeInput.show();
+  agriwebbSaveButton.show();
 
 }
 function hideAllParam() {
@@ -157,5 +171,19 @@ function hideAllParam() {
   clockAlarmMessageButton.hide();
   otaStartButton.hide();
   otaHelpTextTitle.hide();
+ 
+  agriwebbEnableTitle.hide();
+  agriwebbEnableCheckbox.hide();
+  agriwebbEnableButton.hide();
+  agriwebbTitle.hide();
+  agriwebbApiKeyTitle.hide();
+  agriwebbApiKeyInput.hide();
+  agriwebbFarmIdTitle.hide();
+  agriwebbFarmIdInput.hide();
+  agriwebbSensorIdTitle.hide();
+  agriwebbSensorIdInput.hide();
+  agriwebbModeTitle.hide();
+  agriwebbModeInput.hide();
+  agriwebbSaveButton.hide();
  
 }
