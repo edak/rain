@@ -345,8 +345,13 @@ function setup() {
   losantDeviceIdInput = createInput('');
   losantDeviceIdInput.position(losantDeviceIdTitle.size().width+losantDeviceIdTitle.x+10, losantDeviceIdTitle.size().height+losantDeviceIdTitle.y);  
 
+  losantSaveButton = createButton('Save');
+  losantSaveButton.position(losantDeviceIdInput.x+losantDeviceIdInput.width, losantDeviceIdInput.y);
+  losantSaveButton.mousePressed(agriwebbSaveCommand);
 
-  createCanvas(600, agriwebbModeInput.y+100);
+
+
+  createCanvas(600, losantDeviceIdInput.y+100);
 
 
   hideAllParam();
