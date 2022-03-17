@@ -82,6 +82,14 @@ function showAllParam() {
   agriwebbModeTitle.show();
   agriwebbModeInput.show();
   agriwebbSaveButton.show();
+  
+  losantEnableCheckbox.show();
+  losantEnableTitle.show();
+  losantEnableButton.show();
+  losantTitle.show();
+  losantDeviceIdTitle.show();
+  losantDeviceIdInput.show();
+  losantSaveButton.show();  
 
 }
 function hideAllParam() {
@@ -185,5 +193,13 @@ function hideAllParam() {
   agriwebbModeTitle.hide();
   agriwebbModeInput.hide();
   agriwebbSaveButton.hide();
+  
+  losantEnableCheckbox.hide();
+  losantEnableTitle.hide();
+  losantEnableButton.hide();
+  losantTitle.hide();
+  losantDeviceIdTitle.hide();
+  losantDeviceIdInput.hide();
+  losantSaveButton.hide();
  
 }

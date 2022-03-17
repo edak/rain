@@ -306,6 +306,26 @@ function agriwebbSaveCommand() {
   sendData("#agrset,"+agriwebbApiKeyInput.value()+","+agriwebbFarmIdInput.value()+","+agriwebbSensorIdInput.value()+","+agriwebbModeInput.value());
 }
 
+function losantEnableCommand() {
+  if (losantEnableCheckbox.checked()) {
+    sendData("#losen");
+  } else {
+    sendData("#losdi");
+  }
+}
+
+function losantSaveCommand() {
+
+  let sanitize = checkUserString(losantDevideIdInput.value(), 30);
+  if (sanitize!=null) {
+    losantDevideIdInput.value(sanitize);
+    return;
+  }
+  sendData("#losset,"+losantDevideIdInput.value());
+}
+
+
+
 function staticSaveCommand() {
   let sanitize = checkUserIPaddress(staticIPInput.value());
   if (sanitize!=null) {

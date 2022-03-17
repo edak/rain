@@ -203,6 +203,33 @@ function gotValue(value) {
     }
   }
   
+
+  if (splitString[0]=='losantEnable') {//losant enabled
+    if (splitString[1]=='t') {
+      losantEnableCheckbox.checked(true);
+      losantEnableTitle.show();
+      losantEnableButton.show();
+      losantTitle.show();
+      losantDeviceIdTitle.show();
+      losantDeviceIdInput.show();
+      losantSaveButton.show();
+
+    } else {
+      losantEnableCheckbox.checked(false);
+      losantEnableTitle.hide();
+      losantEnableButton.hide();
+      losantTitle.hide();
+      losantDeviceIdTitle.hide();
+      losantDeviceIdInput.hide();
+      losantSaveButton.hide();
+    }
+  }
+
+  if (splitString[0]=='losantDevideId') {//losant Device ID  
+    losantDevideIdInput.value(splitString[1]);
+  }  
+  
+  
   if (splitString[0]=='agriwebbEnable') {//agriwebb enabled
     if (splitString[1]=='t') {
       agriwebbEnableCheckbox.checked(true);

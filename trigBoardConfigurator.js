@@ -328,6 +328,24 @@ function setup() {
   agriwebbSaveButton.position(agriwebbModeInput.x+agriwebbModeInput.width, agriwebbModeInput.y);
   agriwebbSaveButton.mousePressed(agriwebbSaveCommand);
 
+
+  losantEnableTitle = createElement('h4', 'Losant Enabled: ');
+  losantEnableTitle.position(10, agriwebbModeInput.size().height+agriwebbModeInput.y+30);
+  losantEnableCheckbox = createCheckbox('', false);
+  losantEnableCheckbox.position(losantEnableTitle.size().width+losantEnableTitle.x+10, losantEnableTitle.size().height+losantEnableTitle.y);
+  losantEnableButton = createButton('Save');
+  losantEnableButton.position(losantEnableTitle.size().width+losantEnableTitle.x+40, losantEnableTitle.size().height+losantEnableTitle.y);
+  losantEnableButton.mousePressed(losantEnableCommand);
+  
+  losantTitle = createElement('h4', 'Losant Settings:');
+  losantTitle.position(10, losantEnableTitle.size().height+losantEnableTitle.y+5);
+
+  losantDeviceIdTitle = createElement('h4', 'Device ID:');
+  losantDeviceIdTitle.position(10, losantTitle.size().height+losantTitle.y+5); 
+  losantDeviceIdInput = createInput('');
+  losantDeviceIdInput.position(losantDeviceIdTitle.size().width+losantDeviceIdTitle.x+10, losantDeviceIdTitle.size().height+losantDeviceIdTitle.y);  
+
+
   createCanvas(600, agriwebbModeInput.y+100);
 
 
