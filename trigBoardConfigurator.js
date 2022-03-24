@@ -347,7 +347,7 @@ function setup() {
 
   losantSaveButton = createButton('Save');
   losantSaveButton.position(losantDeviceIdInput.x+losantDeviceIdInput.width, losantDeviceIdInput.y);
-  losantSaveButton.mousePressed(agriwebbSaveCommand);
+  losantSaveButton.mousePressed(losantSaveCommand);
 
 
 
