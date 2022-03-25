@@ -316,12 +316,12 @@ function losantEnableCommand() {
 
 function losantSaveCommand() {
 
-  let sanitize = checkUserString(losantDevideIdInput.value(), 30);
+  let sanitize = checkUserString(losantDeviceIdInput.value(), 30);
   if (sanitize!=null) {
-    losantDevideIdInput.value(sanitize);
+    losantDeviceIdInput.value(sanitize);
     return;
   }
-  sendData("#losset,"+losantDevideIdInput.value());
+  sendData("#losset,"+losantDeviceIdInput.value());
 }
 
 

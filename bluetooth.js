@@ -226,7 +226,7 @@ function gotValue(value) {
   }
 
   if (splitString[0]=='losantDevideId') {//losant Device ID  
-    losantDevideIdInput.value(splitString[1]);
+    losantDeviceIdInput.value(splitString[1]);
   }  
   
   
